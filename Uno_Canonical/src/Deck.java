@@ -68,10 +68,10 @@ public class Deck {
 		return theCards.isEmpty();
 	}
 	
-	public void replenishDeck(Deck trashPile){
-		Collections.shuffle(trashPile.theCards);
-		theCards.addAll(trashPile.theCards);
-		trashPile.clear();
+	public void replenishDeck(ArrayList<Card> discardPile){
+		Collections.shuffle(discardPile);
+		theCards.addAll(discardPile);
+		discardPile.clear();
 	}
 	
 	public void addCard(Card c){

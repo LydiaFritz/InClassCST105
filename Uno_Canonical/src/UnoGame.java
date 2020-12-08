@@ -58,12 +58,17 @@ public class UnoGame {
 			discardPile.add(c);
 		} else {
 			// draw a card
+			if(theDeck.isEmpty()){
+				theDeck.replenishDeck(discardPile);
+			}
 			p.drawCard(theDeck.dealCard());
 			if (p.hasMatch(getDiscardPileCard())) {
 				c = p.playCard(getDiscardPileCard());
 				System.out.println(p.getName() + " plays a " + c);
 				discardPile.add(c);
 			} else {
+				if(theDeck.isEmpty())
+					theDeck.replenishDeck(discardPile);
 				p.drawCard(theDeck.dealCard());
 				System.out.println(p.getName() + " has to pass");
 			}
