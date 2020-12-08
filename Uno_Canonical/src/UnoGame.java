@@ -33,7 +33,11 @@ public class UnoGame {
 			getNextPlayer();
 			showPlayersHand();
 			takeTurn();
-			System.out.println("The discard pile shows a " + discardPile.get(discardPile.size() - 1));
+			Card dp_card = discardPile.get(discardPile.size() - 1);
+			if(dp_card.isReverse()){
+				processReverse();
+			}
+			System.out.println("The discard pile shows a " + dp_card);
 			winner = thePlayers.get(currPlayer).isWinner();
 			
 		}
@@ -77,12 +81,16 @@ public class UnoGame {
 
 	private void getNextPlayer() {
 		// initial logic - advance player in clock-wise fashion
-		currPlayer = (currPlayer + 1) % thePlayers.size();
+		currPlayer = (currPlayer + direction + thePlayers.size()) % thePlayers.size();
 		// look at discard pile
 		// Card dp = discardPile.get(discardPile.size() - 1);
 		/*
 		 * if (dp.isDraw2()) { processD2(); }
 		 */
+	}
+	
+	private void processReverse(){
+		direction*=(-1);
 	}
 
 	private void processD2() {
